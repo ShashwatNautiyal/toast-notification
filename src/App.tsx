@@ -72,11 +72,13 @@ function App() {
 					label="Timeout"
 					placeholder="Default: 2000ms"
 				/>
-				<Toggle
-					label="Show Close Button"
-					checked={showClose}
-					setChecked={() => setShowClose((prev) => !prev)}
-				/>
+				<div className="mx-auto">
+					<Toggle
+						label="Show Close Button"
+						checked={showClose}
+						setChecked={() => setShowClose((prev) => !prev)}
+					/>
+				</div>
 			</div>
 			<div className="grid gap-2 md:grid-cols-4 grid-cols-2 md:px-0 px-2">
 				<PrimaryButton
