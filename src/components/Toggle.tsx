@@ -12,9 +12,7 @@ const Toggle = ({
 			htmlFor="checked-toggle"
 			className="inline-flex w-min whitespace-nowrap relative cursor-pointer"
 		>
-			<span className="text-sm font-medium text-gray-700 dark:text-gray-300 mr-3">
-				{label}
-			</span>
+			<span className="text-sm font-medium text-gray-700 mr-3">{label}</span>
 			<input
 				type="checkbox"
 				value=""

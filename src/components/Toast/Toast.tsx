@@ -81,6 +81,7 @@ const Toast = ({
 					Icon={MdInfo}
 				/>
 			)}
+
 			{!type && (
 				<CustomToast
 					gradient="linear-gradient(90deg, rgb(0 255 230 / 30%) 0%, rgb(255 255 255 / 70%) 40%)"
