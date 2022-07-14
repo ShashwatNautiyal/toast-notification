@@ -5,7 +5,7 @@ import { Transition } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../hooks";
 import { remove } from "../../reducers/toast.reducer";
-import { RiNotificationFill } from "react-icons/ri";
+import { FaBell } from "react-icons/fa";
 
 const Toast = ({
 	message,
@@ -50,6 +50,7 @@ const Toast = ({
 			{type === "success" && (
 				<CustomToast
 					gradient="linear-gradient(90deg, rgb(0 255 131 / 30%) 0%, rgb(255 255 255 / 60%) 40%)"
+					gradientDark="linear-gradient(90deg, rgb(0 255 131 / 30%) 0%, rgb(255 255 255 / 6%) 40%)"
 					message={message}
 					description={description}
 					setShow={setShow}
@@ -61,6 +62,7 @@ const Toast = ({
 			{type === "error" && (
 				<CustomToast
 					gradient="linear-gradient(90deg, rgb(255 151 0 / 30%) 0%, rgb(255 255 255 / 60%) 40%)"
+					gradientDark="linear-gradient(90deg, rgb(255 151 0 / 30%) 0%, rgb(255 255 255 / 6%) 40%)"
 					message={message}
 					description={description}
 					setShow={setShow}
@@ -73,6 +75,7 @@ const Toast = ({
 			{type === "info" && (
 				<CustomToast
 					gradient="linear-gradient(90deg, rgb(0 205 255 / 30%) 0%, rgb(255 255 255 / 60%) 40%)"
+					gradientDark="linear-gradient(90deg, rgb(0 205 255 / 30%) 0%, rgb(255 255 255 / 6%) 40%)"
 					message={message}
 					description={description}
 					setShow={setShow}
@@ -85,12 +88,13 @@ const Toast = ({
 			{!type && (
 				<CustomToast
 					gradient="linear-gradient(90deg, rgb(0 255 230 / 30%) 0%, rgb(255 255 255 / 70%) 40%)"
+					gradientDark="linear-gradient(90deg, rgb(0 255 230 / 30%) 0%, rgb(255 255 255 / 6%) 40%)"
 					message={message}
 					description={description}
 					setShow={setShow}
-					Icon={RiNotificationFill}
+					Icon={FaBell}
 					showClose={showClose}
-					textColor={"text-gray-500"}
+					textColor={"text-gray-500 dark:text-gray-400"}
 				/>
 			)}
 		</Transition>
@@ -105,6 +109,7 @@ const CustomToast = ({
 	setShow,
 	textColor,
 	Icon,
+	gradientDark,
 }: {
 	gradient: string;
 	message: string;
@@ -113,17 +118,20 @@ const CustomToast = ({
 	setShow: React.Dispatch<React.SetStateAction<boolean>>;
 	textColor: string;
 	Icon?: (props: React.ComponentProps<"svg">) => JSX.Element;
+	gradientDark: string;
 }) => {
+	const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
 	return (
 		<div
 			style={{
-				backgroundImage: gradient,
+				backgroundImage: prefersDarkScheme ? gradient : gradientDark,
 			}}
-			className={`px-5 py-3 flex justify-center items-center gap-3 backdrop-blur bg-opacity-70 shadow-md rounded leading-5 ${textColor} max-w-md`}
+			className={`px-4 py-3 flex justify-center items-center gap-3 backdrop-blur bg-opacity-70 shadow-md rounded leading-5 ${textColor} max-w-md`}
 		>
 			{Icon && (
 				<div className="">
-					<Icon className="h-7 w-7" />
+					<Icon className="h-6 w-6" />
 				</div>
 			)}
 
@@ -131,11 +139,13 @@ const CustomToast = ({
 				<p className="text-lg font-semibold overflow-hidden text-ellipsis max-w-md">
 					{message}
 				</p>
-				<p className="text-sm font-medium text-gray-600">{description}</p>
+				<p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+					{description}
+				</p>
 			</div>
 			{showClose && (
 				<MdOutlineClose
-					className="h-7 w-7 cursor-pointer flex-shrink-0"
+					className="h-6 w-6 cursor-pointer flex-shrink-0"
 					onClick={() => {
 						setShow(false);
 					}}

@@ -15,7 +15,7 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
 			name={name}
 			disabled={disabled}
 			type={type ?? "button"}
-			className={`flex justify-center shadow-sm rounded-md items-center text-sm text-white py-2 px-10 font-medium ${bgColor} hover:enabled:${bgColor} disabled:opacity-60`}
+			className={`flex focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:outline-none justify-center shadow-sm rounded-md items-center text-sm text-white py-2 px-10 font-medium ${bgColor} hover:enabled:${bgColor} disabled:opacity-60`}
 		>
 			{text}
 		</button>

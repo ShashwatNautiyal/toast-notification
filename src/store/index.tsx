@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import themeReducer from "../reducers/theme.reducer";
 import toastReducer from "../reducers/toast.reducer";
 
 const store = configureStore({
 	reducer: {
 		queue: toastReducer,
+		theme: themeReducer,
 	},
 });
 
