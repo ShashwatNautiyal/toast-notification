@@ -3,7 +3,7 @@ import { MdInfo, MdNotifications, MdOutlineClose } from "react-icons/md";
 import { HiCheckCircle } from "react-icons/hi";
 import { Transition } from "@headlessui/react";
 import { useEffect, useState } from "react";
-import { useAppDispatch } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { remove } from "../../reducers/toast.reducer";
 import { FaBell } from "react-icons/fa";
 
@@ -120,12 +120,12 @@ const CustomToast = ({
 	Icon?: (props: React.ComponentProps<"svg">) => JSX.Element;
 	gradientDark: string;
 }) => {
-	const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+	const isDarkMode = useAppSelector((state) => state.theme.mode) === "dark";
 
 	return (
 		<div
 			style={{
-				backgroundImage: prefersDarkScheme ? gradient : gradientDark,
+				backgroundImage: isDarkMode ? gradientDark : gradient,
 			}}
 			className={`px-4 py-3 flex justify-center items-center gap-3 backdrop-blur-md shadow-md rounded ${textColor} max-w-md`}
 		>

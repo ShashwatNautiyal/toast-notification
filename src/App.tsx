@@ -21,8 +21,6 @@ function App() {
 		else if (mode === "light") document.documentElement.classList.remove("dark");
 	}, [mode]);
 
-	console.log(mode);
-
 	return (
 		<form
 			onSubmit={(e) => {
