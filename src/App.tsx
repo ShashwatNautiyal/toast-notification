@@ -81,7 +81,7 @@ function App() {
 					label="Timeout"
 					placeholder="Default: 2000ms"
 				/>
-				<div className="mx-auto space-x-2">
+				<div className="flex justify-between mt-2">
 					<Toggle
 						id="close-btn"
 						label="Show Close Button"
