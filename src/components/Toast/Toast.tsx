@@ -1,5 +1,5 @@
-import { IoMdCloseCircle } from "react-icons/io";
-import { MdInfo, MdOutlineClose } from "react-icons/md";
+import { IoMdCloseCircle, IoMdNotifications } from "react-icons/io";
+import { MdInfo, MdNotifications, MdOutlineClose } from "react-icons/md";
 import { HiCheckCircle } from "react-icons/hi";
 import { Transition } from "@headlessui/react";
 import { useEffect, useState } from "react";
@@ -92,7 +92,7 @@ const Toast = ({
 					message={message}
 					description={description}
 					setShow={setShow}
-					Icon={FaBell}
+					Icon={IoMdNotifications}
 					showClose={showClose}
 					textColor={"text-gray-500 dark:text-gray-400"}
 				/>
@@ -127,7 +127,7 @@ const CustomToast = ({
 			style={{
 				backgroundImage: prefersDarkScheme ? gradient : gradientDark,
 			}}
-			className={`px-4 py-3 flex justify-center items-center gap-3 backdrop-blur bg-opacity-70 shadow-md rounded leading-5 ${textColor} max-w-md`}
+			className={`px-4 py-3 flex justify-center items-center gap-3 backdrop-blur-md shadow-md rounded ${textColor} max-w-md`}
 		>
 			{Icon && (
 				<div className="">
@@ -135,11 +135,11 @@ const CustomToast = ({
 				</div>
 			)}
 
-			<div className="[&>p]:leading-5">
-				<p className="text-lg font-semibold overflow-hidden text-ellipsis max-w-md">
+			<div className={`${!showClose ? "pr-4" : "pr-0"}`}>
+				<p className="text-base leading-5 font-semibold overflow-hidden text-ellipsis max-w-[350px]">
 					{message}
 				</p>
-				<p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+				<p className="text-sm leading-4 font-medium text-gray-600 dark:text-gray-300 overflow-hidden text-ellipsis max-w-[350px]">
 					{description}
 				</p>
 			</div>
